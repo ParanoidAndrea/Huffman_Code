@@ -15,21 +15,24 @@
 using namespace std;
 
 typedef long long int ll;
-//Testing revealed that the int data type may result in data overflow, so long long int are used instead.
+//typedef defines an alias for a data type. In this case, it defines "ll" as an alias for "long long int".
 
 int a, b, root;
+
+//Define a struct to store the information of each node in the Huffman tree.
 struct Node {
-	ll weight;
-	int left, right;
-	int character;
-	Node() :weight(0), character(0) { left = right = -1; }
+	ll weight;  //The weight of the node, representing the frequency of the character in the input file.
+	int left, right;  //The left and right children of the node.
+	int character;  //The character stored in the node, with a value of 0 if the node is not a leaf node.
+	Node() :weight(0), character(0) { left = right = -1; }  //Constructor to initialize the node.
 	Node(ll _w, int _l, int _r, int _ch) :weight(_w), left(_l), right(_r), character(_ch) {}
 };
 
-ll number[550], sum = 0;//Record the frequency of each character's occurrence. 
-vector<int> schedle[550], code;//Record the encoding for each character
-vector<Node> t;//Huffman Tree
+ll number[550];  //Array to store the frequency of each character's occurrence.
+vector<int> schedle[550], code;  //Arrays to store the encoding for each character.
+vector<Node> t;  //Vector to store the nodes in the Huffman tree.
 
+//Define a struct to compare the weight of two nodes in the Huffman tree.
 struct compare {
 	bool operator()(int a, int b)
 	{
@@ -37,30 +40,32 @@ struct compare {
 	}
 };
 
+//Define a priority queue to store the nodes in the Huffman tree, sorted by their weight.
 priority_queue<int, vector<int>, compare> q;
-//The priority queue can sort the elements in the queue, allowing for the merging of nodes to create a parent node.
 
+//Function to read the input file and store the frequency of each character's occurrence.
 void input()
 {
-	FILE* fp = freopen("input.txt", "r", stdin);
+	FILE* fp = freopen("input.txt", "r", stdin);  //Open the input file.
 	char x;
-	while (scanf(" %c", &x) != EOF)
-		number[x]++;
-	fclose(fp);
+	while (scanf(" %c", &x) != EOF)  //Read the input file until the end of the file.
+		number[x]++;  //Increment the frequency of the character.
+	fclose(fp);  //Close the input file.
 }
+
+//Function to build the Huffman tree.
 int BuildTree()
 {
 	for (int i = 1; i <= 500; i++)
 	{
 		if (number[i])
 		{
-			sum++;
-			t.push_back(Node(number[i], -1, -1, i));//Adding leaf nodes to the tree.
-			q.push(t.size() - 1);
-			//Putting the node's index into the priority queue "q" , and the nodes in "q" will be sorted according to the "compare" struct.
+			sum++;  //Increment the number of characters in the input file.
+			t.push_back(Node(number[i], -1, -1, i));  //Add a leaf node to the Huffman tree.
+			q.push(t.size() - 1);  //Put the node's index into the priority queue "q".
 		}
 	}
-	while (q.size() > 1)
+	while (q.size() > 1)  //While there are more than 1 node
 	{
 		a = q.top();
 		q.pop();
