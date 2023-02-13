@@ -11,15 +11,15 @@ This code is an implementation of the Huffman coding algorithm for text data com
 
 The code starts by defining a number of variables and structures, including:
 
-A long long int type called "ll"
+  A long long int type called "ll"
 
-An array called "number" to store the frequency of each character's occurrence in the input text file
+  An array called "number" to store the frequency of each character's occurrence in the input text file
 
-A 2D vector called "schedle" to store the encoding of each character
+  A 2D vector called "schedle" to store the encoding of each character
 
-A vector of type Node called "t", which represents the Huffman tree
+  A vector of type Node called "t", which represents the Huffman tree
 
-A priority queue of type "int" called "q" to store the nodes of the Huffman tree during the building process.
+  A priority queue of type "int" called "q" to store the nodes of the Huffman tree during the building process.
 
 The input function reads the data from the "input.txt" file and counts the frequency of each character using a loop.
 
