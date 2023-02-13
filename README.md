@@ -12,10 +12,15 @@ This code is an implementation of the Huffman coding algorithm for text data com
 The code starts by defining a number of variables and structures, including:
 
 A long long int type called "ll"
+
 An array called "number" to store the frequency of each character's occurrence in the input text file
+
 A 2D vector called "schedle" to store the encoding of each character
+
 A vector of type Node called "t", which represents the Huffman tree
+
 A priority queue of type "int" called "q" to store the nodes of the Huffman tree during the building process.
+
 The input function reads the data from the "input.txt" file and counts the frequency of each character using a loop.
 
 The BuildTree function builds the Huffman tree by creating leaf nodes for each character with a non-zero frequency and merging them into a parent node. The merging process is done by selecting two nodes with the highest weight from the priority queue "q", generating a parent node for them, and putting the parent node back into "q". The process is repeated until all the nodes are merged into one root node, which is then returned.
