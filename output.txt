@@ -1,4 +1,4 @@
-×Ö·û	È¨Öµ	±àÂë
+Character	Value	Code
 a	5	100
 b	6	101
 c	7	00
