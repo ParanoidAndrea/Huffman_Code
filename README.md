@@ -24,6 +24,7 @@ Huffman coding is a data compression algorithm that assigns variable-length code
             
     ├── Huffman_Code.vcxproj.user 
 # Input and Output
+This program require user to put the code text file in the root
 Input:
 
 ![image](https://user-images.githubusercontent.com/82789287/218552209-a8cd1303-b50c-45b5-a9ac-640a9d4cfcf5.png)
