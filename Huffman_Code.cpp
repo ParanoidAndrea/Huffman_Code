@@ -20,11 +20,12 @@ typedef long long int ll;
 int a, b, root;
 
 //Define a struct to store the information of each node in the Huffman tree.
-struct Node {
+struct Node 
+{
 	ll weight;  //The weight of the node, representing the frequency of the character in the input file.
 	int left, right;  //The left and right children of the node.
 	int character;  //The character stored in the node, with a value of 0 if the node is not a leaf node.
-	Node() :weight(0), character(0) { left = right = -1; }  //Constructor to initialize the node.
+	Node() :weight(0), character(0) { left = right = -1; } 
 	Node(ll _w, int _l, int _r, int _ch) :weight(_w), left(_l), right(_r), character(_ch) {}
 };
 
@@ -33,7 +34,8 @@ vector<int> schedle[550], code;  //Arrays to store the encoding for each charact
 vector<Node> t;  //Vector to store the nodes in the Huffman tree.
 
 //Define a struct to compare the weight of two nodes in the Huffman tree.
-struct compare {
+struct compare 
+{
 	bool operator()(int a, int b)
 	{
 		return t[a].weight > t[b].weight;
@@ -56,7 +58,7 @@ void input()
 //Function to build the Huffman tree.
 int BuildTree()
 {
-	for (int i = 1; i <= 500; i++)
+	for (int i = 1; i <= 500; ++i)
 	{
 		if (number[i])
 		{
