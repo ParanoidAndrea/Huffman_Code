@@ -15,7 +15,6 @@
 using namespace std;
 
 typedef long long int ll;
-//typedef defines an alias for a data type. In this case, it defines "ll" as an alias for "long long int".
 
 int a, b, root;
 
@@ -25,7 +24,10 @@ struct Node
 	ll weight;  //The weight of the node, representing the frequency of the character in the input file.
 	int left, right;  //The left and right children of the node.
 	int character;  //The character stored in the node, with a value of 0 if the node is not a leaf node.
-	Node() :weight(0), character(0) { left = right = -1; } 
+	Node() :weight(0), character(0) 
+	{ 
+		left = right = -1; 
+	} 
 	Node(ll _w, int _l, int _r, int _ch) :weight(_w), left(_l), right(_r), character(_ch) {}
 };
 
@@ -46,13 +48,15 @@ struct compare
 priority_queue<int, vector<int>, compare> q;
 
 //Function to read the input file and store the frequency of each character's occurrence.
-void input()
+void InputText()
 {
 	FILE* fp = freopen("input.txt", "r", stdin);  //Open the input file.
 	char x;
 	while (scanf(" %c", &x) != EOF)  //Read the input file until the end of the file.
+	{
 		number[x]++;  //Increment the frequency of the character.
-	fclose(fp);  //Close the input file.
+	}
+	fclose(fp);
 }
 
 //Function to build the Huffman tree.
@@ -62,9 +66,8 @@ int BuildTree()
 	{
 		if (number[i])
 		{
-			sum++;  //Increment the number of characters in the input file.
 			t.push_back(Node(number[i], -1, -1, i));  //Add a leaf node to the Huffman tree.
-			q.push(t.size() - 1);  //Put the node's index into the priority queue "q".
+			q.push((int)t.size() - 1);  //Put the node's index into the priority queue "q".
 		}
 	}
 	while (q.size() > 1)  //While there are more than 1 node
@@ -75,7 +78,7 @@ int BuildTree()
 		q.pop();
 		//Selecting the two nodes with the highest weight in "q", "a" and "b", and generating a parent node for both.
 		t.push_back(Node(t[a].weight + t[b].weight, a, b, 0));
-		q.push(t.size() - 1);
+		q.push((int)t.size() - 1);
 	}
 	return q.top(); //The top of the priority queue "q" is the index of the root node.
 }
@@ -100,7 +103,7 @@ void HuffmanCoding(int index)
 	return;
 }
 
-void output()
+void OutputText()
 {
 	FILE* fp1 = freopen("input.txt", "r", stdin);
 	FILE* fp2 = freopen("output.txt", "w", stdout);
@@ -112,7 +115,9 @@ void output()
 		{
 			printf("%c\t%lld\t", i, number[i]);
 			for (int j = 0; j <= schedle[i].size() - 1; j++)
+			{
 				cout << schedle[i][j];
+			}
 			cout << endl;
 		}
 	}
@@ -121,7 +126,9 @@ void output()
 	while (scanf(" %c", &y) != EOF)
 	{
 		for (int i = 0; i < schedle[y].size(); i++)
+		{
 			cout << schedle[y][i];
+		}
 	}
 	fclose(fp1);
 	fclose(fp2);
@@ -136,12 +143,14 @@ int main()
 	memset(number, sizeof(number), 0);
 	code.clear();
 	for (int i = 0; i < 550; i++)
+	{
 		schedle[i].clear();
+	}
 
-	input();
+	InputText();
 	root = BuildTree();
 	HuffmanCoding(root);
-	output();
+	OutputText();
 
 	return 0;
 }
